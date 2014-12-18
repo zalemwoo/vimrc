@@ -43,21 +43,10 @@ Plugin 'https://github.com/jlanzarotta/bufexplorer'
 call vundle#end() " required
 filetype plugin indent on " required
 
-let nerd_tree_opened = 0
-func ToggleNERDTree()
-    if g:nerd_tree_opened  == 1
-        let g:nerd_tree_opened = 0
-        :NERDTreeClose
-    else
-        let g:nerd_tree_opened = 1
-        :NERDTree
-    endif
-endfunc
-
 " F3 for toggle NERDTree
-map <F3> :call ToggleNERDTree() <CR>
+map <F3> :NERDTreeToggle <CR>
 " F4 for focus on NERDTree window
-map <F4> :call NERDTreeFocus() <CR>
+map <F4> :NERDTreeFocus <CR>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
