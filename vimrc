@@ -39,6 +39,7 @@ Plugin 'https://github.com/vim-ruby/vim-ruby.git'
 Plugin 'https://github.com/Shougo/vimproc.vim' " needed by vimshell, goto downloaded folder and `make`
 Plugin 'https://github.com/Shougo/vimshell.vim'
 Plugin 'https://github.com/jlanzarotta/bufexplorer'
+Plugin 'https://github.com/bling/vim-airline.git'
 
 call vundle#end() " required
 filetype plugin indent on " required
