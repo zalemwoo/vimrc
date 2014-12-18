@@ -40,6 +40,7 @@ Plugin 'https://github.com/Shougo/vimproc.vim' " needed by vimshell, goto downlo
 Plugin 'https://github.com/Shougo/vimshell.vim'
 Plugin 'https://github.com/jlanzarotta/bufexplorer'
 Plugin 'https://github.com/bling/vim-airline.git'
+Plugin 'https://github.com/tpope/vim-commentary.git'
 
 call vundle#end() " required
 filetype plugin indent on " required
