@@ -5,6 +5,8 @@ if v:progname =~? "evim"
   finish
 endif
 
+let mapleader='\'
+
 "#####
 set number "行番号を表示する
 set title "編集中のファイル名を表示
@@ -102,6 +104,7 @@ Plugin 'L9'
 Plugin 'FuzzyFinder'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
+
 call vundle#end() " required
 filetype plugin indent on " required
 
@@ -491,26 +494,28 @@ let g:memolist_unite_source = "file_rec"
 let g:memolist_unite_option = "-start-insert"
 let g:memolist_path = "Dropbox/srockstyle/notes"
 
-" Go言語の設定
+"" Go言語の設定
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+
+"" Vim-goの設定
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 " :Fmt などで gofmt の代わりに goimports を使う
-let g:gofmt_command = 'goimports'
-
-" Go に付属の plugin と gocode を有効にする
-set rtp^=${GOROOT}/misc/vim
-set rtp^=${GOPATH}/src/github.com/nsf/gocode/vim
-
-" 保存時に :Fmt する
-au BufWritePre *.go Fmt
-au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
-au FileType go compiler go
-" Vim-goの設定
-let g:go_play_open_browser = 0
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 0
-let g:go_fmt_command = "gofmt"
-let g:go_gocode_bin="/Users/srockstyle/go/bin/gocode"
-let g:go_goimports_bin="/Users/srockstyle/go/bin/goimports"
-let g:go_godef_bin="/Users/srockstyle/go/bin/godef"
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
 
 
 "HTML5の設定
