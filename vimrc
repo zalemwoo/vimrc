@@ -74,6 +74,7 @@ Plugin 'AndrewRadev/switch.vim'
 Plugin 'edsono/vim-matchit'
 Plugin 'http://github.com/tpope/vim-surround'
 Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/unite.vim'
 Bundle "https://github.com/Shougo/neocomplcache.vim"
 Plugin 'https://github.com/thinca/vim-ref'
