@@ -85,19 +85,6 @@ Plugin 'https://github.com/vim-scripts/ruby-matchit'
 Plugin 'https://github.com/othree/html5.vim.git'
 Plugin 'https://github.com/hail2u/vim-css3-syntax'
 Plugin 'https://github.com/hokaccha/vim-html5validator'
-Plugin 'vim-jp/vimdoc-ja'
-
-" Twitter Vim
-" Bundle 'basyura/TweetVim'
-" Bundle 'mattn/webapi-vim'
-" Bundle 'basyura/twibill.vim'
-" Bundle 'tyru/open-browser.vim'
-" Bundle 'h1mesuke/unite-outline'
-" Bundle 'basyura/bitly.vim'
-
-" EverNote
-" Bundle "https://github.com/kakkyz81/evervim"
-" Bundle 'glidenote/memolist.vim'
 
 "Bundle 'https://github.com/Shougo/neocomplcache-rsense.vim'
 " vim-scripts repos
@@ -105,6 +92,9 @@ Plugin 'L9'
 Plugin 'FuzzyFinder'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
+
+Plugin 'pangloss/vim-javascript'
+Bundle 'mxw/vim-jsx'
 
 call vundle#end() " required
 filetype plugin indent on " required
@@ -154,6 +144,11 @@ let g:netrw_altv = 1
 " 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
 let g:netrw_alto = 1
 set wildmode=list:full
+
+" vim-javascript"
+let g:javascript_enable_domhtmlcss = 0
+" vim-jsx
+let g:jsx_ext_required = 0
 
 "Rails周りの設定
 "augroup AlpacaTags
