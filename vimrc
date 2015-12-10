@@ -12,9 +12,9 @@ set number "行番号を表示する
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
-set tabstop=2 "インデントをスペース4つ分に設定
+set tabstop=4 "インデントをスペース4つ分に設定
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set smartindent "オートインデント
 let g:unite_enable_start_insert=0
 let g:unite_source_history_yank_enable =1
@@ -80,18 +80,13 @@ Bundle "https://github.com/Shougo/neocomplcache.vim"
 Plugin 'https://github.com/thinca/vim-ref'
 Plugin 'https://github.com/yuku-t/vim-ref-ri'
 Plugin 'https://github.com/vim-scripts/ruby-matchit'
-" Plugin 'petdance/vim-perl'
-" Plugin 'hotchpotch/perldoc-vim'
 Plugin 'https://github.com/othree/html5.vim.git'
 Plugin 'https://github.com/hail2u/vim-css3-syntax'
 Plugin 'https://github.com/hokaccha/vim-html5validator'
-
 "Bundle 'https://github.com/Shougo/neocomplcache-rsense.vim'
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'FuzzyFinder'
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
 
 Plugin 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
@@ -150,18 +145,6 @@ let g:javascript_enable_domhtmlcss = 0
 " vim-jsx
 let g:jsx_ext_required = 0
 
-"Rails周りの設定
-"augroup AlpacaTags
-"  autocmd!
-"	if exists(':Tags')
-"		autocmd BufWritePost Gemfile TagsBundle
-"		autocmd BufEnter * TagsSet
-"		" 毎回保存と同時更新する場合はコメントを外す
-"		autocmd BufWritePost * TagsUpdate
-"	endif
-"augroup END
-
-
 "------------------------------------
 "" neosnippet
 "------------------------------------
@@ -171,40 +154,6 @@ inoremap <silent><C-U>            <ESC>:<C-U>Unite snippet<CR>
 nnoremap <silent><Space>e         :<C-U>NeoSnippetEdit -split<CR>
 smap <silent><C-F>                <Plug>(neosnippet_expand_or_jump
 
-
-"------------------------------------
-" vim-rails
-"------------------------------------
-""{{{
-"有効化
-let g:rails_default_file='config/database.yml'
-let g:rails_level = 4
-let g:rails_mappings=1
-let g:rails_modelines=0
-" let g:rails_some_option = 1
-" let g:rails_statusline = 1
-" let g:rails_subversion=0
-" let g:rails_syntax = 1
-" let g:rails_url='http://localhost:3000'
-" let g:rails_ctags_arguments='--languages=-javascript'
-" let g:rails_ctags_arguments = ''
-function! SetUpRailsSetting()
-  nnoremap <buffer><Space>r :R<CR>
-  nnoremap <buffer><Space>a :A<CR>
-  nnoremap <buffer><Space>m :Rmodel<Space>
-  nnoremap <buffer><Space>c :Rcontroller<Space>
-  nnoremap <buffer><Space>v :Rview<Space>
-  nnoremap <buffer><Space>p :Rpreview<CR>
-endfunction
- 
-aug MyAutoCmd
-  au User Rails call SetUpRailsSetting()
-aug END
- 
-aug RailsDictSetting
-  au!
-aug END
-"}}}
 
 function! s:separate_defenition_to_each_filetypes(ft_dictionary) "{{{
   let result = {}
@@ -499,6 +448,7 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
