@@ -5,6 +5,7 @@ if v:progname =~? "evim"
   finish
 endif
 
+
 let mapleader='\'
 
 "#####
@@ -16,6 +17,7 @@ set tabstop=4 "インデントをスペース4つ分に設定
 set expandtab
 set shiftwidth=4
 set smartindent "オートインデント
+
 let g:unite_enable_start_insert=0
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
@@ -60,6 +62,7 @@ Plugin 'https://github.com/alpaca-tc/alpaca_tags'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'tpope/vim-endwise'
 Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " Plugin 'vim-scripts/java.vim'
 " Plugin 'vim-scripts/javacomplete'
 " Plugin 'vim-scripts/java_getset.vim'
@@ -491,6 +494,10 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+
+" set nobackup
+" set nowritebackup
+set backupdir=/tmp/,~/.backup
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
