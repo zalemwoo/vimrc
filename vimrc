@@ -75,24 +75,27 @@ Plugin 'https://github.com/thoughtbot/vim-rspec'
 Plugin 'https://github.com/tpope/vim-dispatch'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'edsono/vim-matchit'
-Plugin 'http://github.com/tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/unite.vim'
-Bundle "https://github.com/Shougo/neocomplcache.vim"
-Plugin 'https://github.com/thinca/vim-ref'
-Plugin 'https://github.com/yuku-t/vim-ref-ri'
-Plugin 'https://github.com/vim-scripts/ruby-matchit'
-Plugin 'https://github.com/othree/html5.vim.git'
-Plugin 'https://github.com/hail2u/vim-css3-syntax'
-Plugin 'https://github.com/hokaccha/vim-html5validator'
-"Bundle 'https://github.com/Shougo/neocomplcache-rsense.vim'
+Bundle "Shougo/neocomplcache.vim"
+Plugin 'thinca/vim-ref'
+Plugin 'yuku-t/vim-ref-ri'
+Plugin 'vim-scripts/ruby-matchit'
+Plugin 'othree/html5.vim.git'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'hokaccha/vim-html5validator'
+"Bundle 'Shougo/neocomplcache-rsense.vim'
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 
 Plugin 'pangloss/vim-javascript'
-Bundle 'mxw/vim-jsx'
+Plugin 'mxw/vim-jsx'
+
+" rust lang
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end() " required
 filetype plugin indent on " required
@@ -147,6 +150,9 @@ set wildmode=list:full
 let g:javascript_enable_domhtmlcss = 0
 " vim-jsx
 let g:jsx_ext_required = 0
+
+" rest lang
+let g:rustfmt_autosave = 1
 
 "------------------------------------
 "" neosnippet
@@ -511,7 +517,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+  set mouse=v
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
