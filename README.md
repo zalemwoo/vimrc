@@ -16,3 +16,12 @@ $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 $ vim -u <vimrc path> +PluginInstall +GoInstallBinaries +qall
 $ cd ~/.vim/bundle/vimproc.vim && make
 ```
+
+*environment setting*
+in ```.bashrc``` or ```.bash_profile```, add
+```bash
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -u ~/vimrc/vimrc'
+alias vi='vim'
+alias gvim='/Applications/MacVim.app/Contents/MacOS/gvim -U ~/vimrc/gvimrc'
+
+```

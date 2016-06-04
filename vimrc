@@ -5,7 +5,6 @@ if v:progname =~? "evim"
   finish
 endif
 
-
 let mapleader='\'
 
 "#####
@@ -13,9 +12,9 @@ set number "行番号を表示する
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
-set tabstop=4 "インデントをスペース4つ分に設定
+set tabstop=2 "インデントをスペース4つ分に設定
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set smartindent "オートインデント
 
 let g:unite_enable_start_insert=0
@@ -69,9 +68,9 @@ Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " Plugin 'vim-scripts/java_checkstyle.vim'
 Plugin 'tsukkee/unite-tag'
 Plugin 'https://github.com/scrooloose/syntastic'
-Plugin 'alpaca-tc/neorspec.vim'
-Plugin 'basyura/unite-rails'
-Plugin 'https://github.com/thoughtbot/vim-rspec'
+" Plugin 'alpaca-tc/neorspec.vim'
+" Plugin 'basyura/unite-rails'
+" Plugin 'https://github.com/thoughtbot/vim-rspec'
 Plugin 'https://github.com/tpope/vim-dispatch'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'edsono/vim-matchit'
@@ -82,7 +81,7 @@ Plugin 'Shougo/unite.vim'
 Bundle "Shougo/neocomplcache.vim"
 Plugin 'thinca/vim-ref'
 Plugin 'yuku-t/vim-ref-ri'
-Plugin 'vim-scripts/ruby-matchit'
+" Plugin 'vim-scripts/ruby-matchit'
 Plugin 'othree/html5.vim.git'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'hokaccha/vim-html5validator'
@@ -91,11 +90,15 @@ Plugin 'hokaccha/vim-html5validator'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 
+" for js & jsx
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 " rust lang
 Plugin 'rust-lang/rust.vim'
+
+" vim-indent-guides
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end() " required
 filetype plugin indent on " required
@@ -363,7 +366,7 @@ let dbext_default_host="localhost"
 let dbext_default_buffer_lines=60
 
 " シンタックスチェック
-let g:syntastic_javascript_checker = "jshint"
+" let g:syntastic_javascript_checker = "jshint"
 
 "アルパカタグ
 let g:alpaca_update_tags_config = {
@@ -382,16 +385,6 @@ augroup AlpacaTags
 		endif
 augroup END
 nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
-
-" RSPEC自動実行
-let g:quickrun_config = {}
-let g:quickrun_config['ruby.rspec'] = { 'command': 'rspec', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
-augroup RSpec
-		autocmd!
-		autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
-augroup END
-
-let g:rspec_command = "Dispatch rspec {spec}"
 
 " PHP用の設定
 autocmd FileType php,ctp :set dictionary="~/.vim/dict/php.dict"
