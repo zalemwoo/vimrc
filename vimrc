@@ -78,14 +78,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/unite.vim'
-Bundle "Shougo/neocomplcache.vim"
 Plugin 'thinca/vim-ref'
 Plugin 'yuku-t/vim-ref-ri'
 " Plugin 'vim-scripts/ruby-matchit'
 Plugin 'othree/html5.vim.git'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'hokaccha/vim-html5validator'
-"Bundle 'Shougo/neocomplcache-rsense.vim'
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'FuzzyFinder'
@@ -96,6 +94,12 @@ Plugin 'mxw/vim-jsx'
 
 " rust lang
 Plugin 'rust-lang/rust.vim'
+
+" typescript
+Plugin 'leafgarland/typescript-vim'
+
+" YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
 
 " vim-indent-guides
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -156,6 +160,14 @@ let g:jsx_ext_required = 0
 
 " rest lang
 let g:rustfmt_autosave = 1
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/vimrc/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = 'python'
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 "------------------------------------
 "" neosnippet
@@ -309,6 +321,10 @@ augroup SwitchSetting
   autocmd Filetype * if !empty(split(&ft, '\.')) | call <SID>define_switch_mappings() | endif
 augroup END
 
+" typescript-vim
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
 "------------------------------------
 " Unite-rails.vim
 "------------------------------------
@@ -335,16 +351,6 @@ aug END
 "
 " Endwise
 let g:endwise_no_mappings=1
-
-" netcomplace
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_max_list = 20
-let g:neocomplcache_manual_completion_start_length = 3
-let g:neocomplcache_enable_ignore_case = 1
-let g:neocomplcache_enable_smart_case = 1
-if !exists('g:neocomplcache_delimiter_patterns')
-	let g:neocomplcache_delimiter_patterns = {}
-endif
 
 " vimの補完箇所
 hi Pmenu ctermbg=0
@@ -406,27 +412,6 @@ autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else
 
 :map <C-e> <Esc>$a
 :map <C-a> <Esc>^a
-
-" Perlのための設定
-let g:neocomplcache_ctags_arguments_list = {
-  \ 'perl' : '-R -h ".pm"'
-  \ }
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default'    : '',
-    \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
-    \ }
-if !exists('g:neocomplcache_keyword_patterns')
-				  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-nnoremap <silent> t :Unite tweetvim<CR>
-nnoremap <silent> s :TweetVimSay<CR>
-if !exists('g:neocomplcache_dictionary_filetype_lists')
-				  let g:neocomplcache_dictionary_filetype_lists = {}
-endif
-let neco_dic = g:neocomplcache_dictionary_filetype_lists
-let neco_dic.tweetvim_say = $HOME . '/.tweetvim/screen_name'
 
 "メモアプリ
 map <Leader>mn  :MemoNew<CR>
