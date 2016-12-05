@@ -104,6 +104,12 @@ Plugin 'Valloric/YouCompleteMe'
 " vim-indent-guides
 Plugin 'nathanaelkane/vim-indent-guides'
 
+" editorconfig
+Plugin 'editorconfig/editorconfig-vim'
+
+" jsbeautify
+Plugin 'maksimr/vim-jsbeautify'
+
 call vundle#end() " required
 filetype plugin indent on " required
 
@@ -152,6 +158,28 @@ let g:netrw_altv = 1
 " 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
 let g:netrw_alto = 1
 set wildmode=list:full
+
+" editorconfig
+let g:editorconfig_Beautifier = '~/vimrc/.editorconfig'
+
+" jsbeautify
+" map <c-b> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript,typescript noremap <buffer>  <c-j> :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-j> :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-j> :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-j> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-j> :call CSSBeautify()<cr>
+
+autocmd FileType javascript,typescript vnoremap <buffer>  <c-j> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-j> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-j> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-j> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-j> :call RangeCSSBeautify()<cr>
 
 " vim-javascript"
 let g:javascript_enable_domhtmlcss = 0

@@ -9,6 +9,9 @@ use [Vundle](https://github.com/gmarik/Vundle.vim) as plugin manager
 
 *pre request*
 - ctags
+- editorconfig
+- js-beautify
+
 *usage*
 ```bash
 $ mkdir -p ~/.vim/bundle
