@@ -110,6 +110,9 @@ Plugin 'editorconfig/editorconfig-vim'
 " jsbeautify
 Plugin 'maksimr/vim-jsbeautify'
 
+" vim-autoforma
+Plugin 'Chiel92/vim-autoformat'
+
 call vundle#end() " required
 filetype plugin indent on " required
 
@@ -165,7 +168,7 @@ let g:editorconfig_Beautifier = '~/vimrc/.editorconfig'
 " jsbeautify
 " map <c-b> :call JsBeautify()<cr>
 " or
-autocmd FileType javascript,typescript noremap <buffer>  <c-j> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  <c-j> :call JsBeautify()<cr>
 " for json
 autocmd FileType json noremap <buffer> <c-j> :call JsonBeautify()<cr>
 " for jsx
@@ -175,11 +178,13 @@ autocmd FileType html noremap <buffer> <c-j> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-j> :call CSSBeautify()<cr>
 
-autocmd FileType javascript,typescript vnoremap <buffer>  <c-j> :call RangeJsBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer>  <c-j> :call RangeJsBeautify()<cr>
 autocmd FileType json vnoremap <buffer> <c-j> :call RangeJsonBeautify()<cr>
 autocmd FileType jsx vnoremap <buffer> <c-j> :call RangeJsxBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <c-j> :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-j> :call RangeCSSBeautify()<cr>
+
+noremap <c-t> :Autoformat<CR>
 
 " vim-javascript"
 let g:javascript_enable_domhtmlcss = 0
@@ -451,7 +456,13 @@ let g:memolist_unite_source = "file_rec"
 let g:memolist_unite_option = "-start-insert"
 let g:memolist_path = "Dropbox/srockstyle/notes"
 
-"" Go言語の設定
+" resize window
+nmap    <leader>w=  :resize +3<CR>
+nmap    <leader>w-  :resize -3<CR>
+nmap    <leader>w,  :vertical resize -3<CR>
+nmap    <leader>w.  :vertical resize +3<CR>
+
+" Go言語の設定
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
@@ -465,7 +476,7 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 
-"" Vim-goの設定
+" Vim-goの設定
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
