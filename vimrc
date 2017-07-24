@@ -64,6 +64,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'tpope/vim-endwise'
 Plugin 'fatih/vim-go'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'majutsushi/tagbar'
 " Plugin 'vim-scripts/java.vim'
 " Plugin 'vim-scripts/javacomplete'
 " Plugin 'vim-scripts/java_getset.vim'
@@ -485,6 +486,36 @@ let g:go_highlight_build_constraints = 1
 " :Fmt などで gofmt の代わりに goimports を使う
 let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
+
+" gotags-tagbarの設定
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 
 " HTML5の設定

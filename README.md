@@ -9,6 +9,7 @@ use [Vundle](https://github.com/gmarik/Vundle.vim) as plugin manager
 
 *pre request*
 - ctags
+- [gotags](https://github.com/jstemmer/gotags)
 - editorconfig
 - js-beautify
 
