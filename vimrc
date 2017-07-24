@@ -312,6 +312,9 @@ let g:go_highlight_build_constraints = 1
 " :Fmt などで gofmt の代わりに goimports を使う
 let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
 
 " gotags-tagbarの設定
 " SEE: https://github.com/jstemmer/gotags#vim-tagbar-configuration
