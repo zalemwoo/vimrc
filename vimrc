@@ -38,43 +38,34 @@ Plugin 'gmarik/Vundle.vim' " required
 "
 " original repos on github
 
-Plugin 'https://github.com/scrooloose/nerdtree.git'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-" Plugin 'https://github.com/tpope/vim-rails'
-Plugin 'https://github.com/tpope/vim-fugitive.git'
-" Plugin 'https://github.com/vim-ruby/vim-ruby.git'
+Plugin 'tpope/vim-fugitive'
 " vimproc needed by vimshell, goto downloaded folder and `make`
-Plugin 'https://github.com/Shougo/vimproc.vim'
-Plugin 'https://github.com/Shougo/vimshell.vim'
-Plugin 'https://github.com/jlanzarotta/bufexplorer'
-Plugin 'https://github.com/bling/vim-airline.git'
-Plugin 'https://github.com/tpope/vim-commentary.git'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-commentary'
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'Shougo/vimfiler.vim'
-Bundle "https://github.com/kannokanno/previm"
-Bundle "https://github.com/thinca/vim-unite-chef"
-Plugin 'https://github.com/rhysd/clever-f.vim'
+Bundle "kannokanno/previm"
+Bundle "thinca/vim-unite-chef"
+Plugin 'rhysd/clever-f.vim'
 Plugin 'thinca/vim-quickrun'
-Plugin 'https://github.com/vim-scripts/AutoComplPop'
-Plugin 'https://github.com/vim-scripts/dbext.vim'
+Plugin 'vim-scripts/AutoComplPop'
+Plugin 'vim-scripts/dbext.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'https://github.com/alpaca-tc/alpaca_tags'
+Plugin 'alpaca-tc/alpaca_tags'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'tpope/vim-endwise'
 Plugin 'fatih/vim-go'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'majutsushi/tagbar'
-" Plugin 'vim-scripts/java.vim'
-" Plugin 'vim-scripts/javacomplete'
-" Plugin 'vim-scripts/java_getset.vim'
-" Plugin 'vim-scripts/java_checkstyle.vim'
 Plugin 'tsukkee/unite-tag'
-Plugin 'https://github.com/scrooloose/syntastic'
-" Plugin 'alpaca-tc/neorspec.vim'
-" Plugin 'basyura/unite-rails'
-" Plugin 'https://github.com/thoughtbot/vim-rspec'
-Plugin 'https://github.com/tpope/vim-dispatch'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-dispatch'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'Shougo/neosnippet'
@@ -82,7 +73,7 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Shougo/unite.vim'
 Plugin 'thinca/vim-ref'
 Plugin 'yuku-t/vim-ref-ri'
-Plugin 'othree/html5.vim.git'
+Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'hokaccha/vim-html5validator'
 " vim-scripts repos
@@ -111,20 +102,21 @@ Plugin 'editorconfig/editorconfig-vim'
 " jsbeautify
 Plugin 'maksimr/vim-jsbeautify'
 
-" vim-autoforma
+" vim-autoformat
 Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end() " required
 filetype plugin indent on " required
 
 " F3 for toggle NERDTree
-map <F3> :NERDTreeToggle <CR>
+nmap <F3> :NERDTreeToggle <CR>
 " F4 for focus on NERDTree window
-map <F4> :NERDTreeFocus <CR>
+nmap <F4> :NERDTreeFocus <CR>
+" F8 for TagBar
+nmap <F8> :TagbarToggle<CR>
 
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
-
 
 "#####検索設定#####
 set ignorecase "大文字/小文字の区別なく検索する
@@ -212,178 +204,28 @@ inoremap <silent><C-U>            <ESC>:<C-U>Unite snippet<CR>
 nnoremap <silent><Space>e         :<C-U>NeoSnippetEdit -split<CR>
 smap <silent><C-F>                <Plug>(neosnippet_expand_or_jump
 
-
 function! s:separate_defenition_to_each_filetypes(ft_dictionary) "{{{
   let result = {}
- 
+
   for [filetypes, value] in items(a:ft_dictionary)
     for ft in split(filetypes, ",")
       if !has_key(result, ft)
         let result[ft] = []
       endif
- 
+
       call extend(result[ft], copy(value))
     endfor
   endfor
- 
+
   return result
 endfunction"}}}
 nnoremap ! :Switch<CR>
-" let s:switch_definition = {
-"       \ '*': [
-"       \   ['is', 'are']
-"       \ ],
-"       \ 'ruby,eruby,haml' : [
-"       \   ['if', 'unless'],
-"       \   ['while', 'until'],
-"       \   ['.blank?', '.present?'],
-"       \   ['include', 'extend'],
-"       \   ['class', 'module'],
-"       \   ['.inject', '.delete_if'],
-"       \   ['.map', '.map!'],
-"       \   ['attr_accessor', 'attr_reader', 'attr_writer'],
-"       \ ],
-"       \ 'Gemfile,Berksfile' : [
-"       \   ['=', '<', '<=', '>', '>=', '~>'],
-"       \ ],
-"       \ 'ruby.application_template' : [
-"       \   ['yes?', 'no?'],
-"       \   ['lib', 'initializer', 'file', 'vendor', 'rakefile'],
-"       \   ['controller', 'model', 'view', 'migration', 'scaffold'],
-"       \ ],
-"       \ 'erb,html,php' : [
-"       \   { '<!--\([a-zA-Z0-9 /]\+\)--></\(div\|ul\|li\|a\)>' : '</\2><!--\1-->' },
-"       \ ],
-"       \ 'rails' : [
-"       \   [100, ':continue', ':information'],
-"       \   [101, ':switching_protocols'],
-"       \   [102, ':processing'],
-"       \   [200, ':ok', ':success'],
-"       \   [201, ':created'],
-"       \   [202, ':accepted'],
-"       \   [203, ':non_authoritative_information'],
-"       \   [204, ':no_content'],
-"       \   [205, ':reset_content'],
-"       \   [206, ':partial_content'],
-"       \   [207, ':multi_status'],
-"       \   [208, ':already_reported'],
-"       \   [226, ':im_used'],
-"       \   [300, ':multiple_choices'],
-"       \   [301, ':moved_permanently'],
-"       \   [302, ':found'],
-"       \   [303, ':see_other'],
-"       \   [304, ':not_modified'],
-"       \   [305, ':use_proxy'],
-"       \   [306, ':reserved'],
-"       \   [307, ':temporary_redirect'],
-"       \   [308, ':permanent_redirect'],
-"       \   [400, ':bad_request'],
-"       \   [401, ':unauthorized'],
-"       \   [402, ':payment_required'],
-"       \   [403, ':forbidden'],
-"       \   [404, ':not_found'],
-"       \   [405, ':method_not_allowed'],
-"       \   [406, ':not_acceptable'],
-"       \   [407, ':proxy_authentication_required'],
-"       \   [408, ':request_timeout'],
-"       \   [409, ':conflict'],
-"       \   [410, ':gone'],
-"       \   [411, ':length_required'],
-"       \   [412, ':precondition_failed'],
-"       \   [413, ':request_entity_too_large'],
-"       \   [414, ':request_uri_too_long'],
-"       \   [415, ':unsupported_media_type'],
-"       \   [416, ':requested_range_not_satisfiable'],
-"       \   [417, ':expectation_failed'],
-"       \   [422, ':unprocessable_entity'],
-"       \   [423, ':precondition_required'],
-"       \   [424, ':too_many_requests'],
-"       \   [426, ':request_header_fields_too_large'],
-"       \   [500, ':internal_server_error'],
-"       \   [501, ':not_implemented'],
-"       \   [502, ':bad_gateway'],
-"       \   [503, ':service_unavailable'],
-"       \   [504, ':gateway_timeout'],
-"       \   [505, ':http_version_not_supported'],
-"       \   [506, ':variant_also_negotiates'],
-"       \   [507, ':insufficient_storage'],
-"       \   [508, ':loop_detected'],
-"       \   [510, ':not_extended'],
-"       \   [511, ':network_authentication_required'],
-"       \ ],
-"       \ 'rspec': [
-"       \   ['describe', 'context', 'specific', 'example'],
-"       \   ['before', 'after'],
-"       \   ['be_true', 'be_false'],
-"       \   ['get', 'post', 'put', 'delete'],
-"       \   ['==', 'eql', 'equal'],
-"       \   { '\.should_not': '\.should' },
-"       \   ['\.to_not', '\.to'],
-"       \   { '\([^. ]\+\)\.should\(_not\|\)': 'expect(\1)\.to\2' },
-"       \   { 'expect(\([^. ]\+\))\.to\(_not\|\)': '\1.should\2' },
-"       \ ],
-"       \ 'markdown' : [
-"       \   ['[ ]', '[x]']
-"       \ ]
-"       \ }
- 
-" let s:switch_definition = s:separate_defenition_to_each_filetypes(s:switch_definition)
-" function! s:define_switch_mappings() "{{{
-"   if exists('b:switch_custom_definitions')
-"     unlet b:switch_custom_definitions
-"   endif
-"
-"   let dictionary = []
-"   for filetype in split(&ft, '\.')
-"     if has_key(s:switch_definition, filetype)
-"       let dictionary = extend(dictionary, s:switch_definition[filetype])
-"     endif
-"   endfor
-"
-"   if exists('b:rails_root')
-"     let dictionary = extend(dictionary, s:switch_definition['rails'])
-"   endif
-"
-"   if has_key(s:switch_definition, '*')
-"     let dictionary = extend(dictionary, s:switch_definition['*'])
-"   endif
-"
-" endfunction"}}}
-"
-" augroup SwitchSetting
-"   autocmd!
-"   autocmd Filetype * if !empty(split(&ft, '\.')) | call <SID>define_switch_mappings() | endif
-" augroup END
 
 " typescript-vim
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = '-t ES2015'
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
-
-" ------------------------------------
-" Unite-rails.vim
-" ------------------------------------
-" {{{
-" function! UniteRailsSetting()
-"   nnoremap <buffer><C-H><C-H><C-H>  :<C-U>Unite rails/view<CR>
-"   nnoremap <buffer><C-H><C-H>       :<C-U>Unite rails/model<CR>
-"   nnoremap <buffer><C-H>            :<C-U>Unite rails/controller<CR>
-"
-"   nnoremap <buffer><C-H>c           :<C-U>Unite rails/config<CR>
-"   nnoremap <buffer><C-H>s           :<C-U>Unite rails/spec<CR>
-"   nnoremap <buffer><C-H>m           :<C-U>Unite rails/db -input=migrate<CR>
-"   nnoremap <buffer><C-H>l           :<C-U>Unite rails/lib<CR>
-"   nnoremap <buffer><expr><C-H>g     ':e '.b:rails_root.'/Gemfile<CR>'
-"   nnoremap <buffer><expr><C-H>r     ':e '.b:rails_root.'/config/routes.rb<CR>'
-"   nnoremap <buffer><expr><C-H>se    ':e '.b:rails_root.'/db/seeds.rb<CR>'
-"   nnoremap <buffer><C-H>ra          :<C-U>Unite rails/rake<CR>
-"   nnoremap <buffer><C-H>h           :<C-U>Unite rails/heroku<CR>
-" endfunction
-" aug MyAutoCmd
-"   au User Rails call UniteRailsSetting()
-" aug END
-" }}}
 
 " Endwise
 let g:endwise_no_mappings=1
@@ -408,34 +250,18 @@ let dbext_default_buffer_lines=60
 "アルパカタグ
 let g:alpaca_update_tags_config = {
       \ '_' : '-R --sort=yes --languages=-js,html,css',
-      \ 'ruby': '--languages=+Ruby',
       \ }
 let g:alpaca_tags_ctags_bin = '/usr/local/Cellar/ctags/5.8/bin/ctags'
 let g:alpaca_tags_cache_directory = "~/.vim/alpaca_tags"
 let g:unite_data_directory = "~/vim/unite_data"
-augroup AlpacaTags
-		autocmd!
-		if exists(':Tags')
-		autocmd BufWritePost * TagsUpdate ruby
-		autocmd BufWritePost Gemfile TagsBundle
-		autocmd BufEnter * TagsSet
-		endif
-augroup END
 nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
-
-" PHP用の設定
-autocmd FileType php,ctp :set dictionary="~/.vim/dict/php.dict"
-autocmd FileType css :set dictionary="~/.vim/dict/css.dict"
-autocmd FileType c :set dictionary="~/.vim/dict/c.dict"
-autocmd FileType js :set dictionary="~/.vim/dict/javascript.dict"
-autocmd FileType rb :set dictionary="~/.vim/dict/ruby.dict"
 
 highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
 " シンタックスエラーチェック
 autocmd FileType php set makeprg=php\ -l\ %
-autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif 
+autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
 
 " 行頭行末への移動
 :map! <C-e> <Esc>$a
@@ -488,35 +314,34 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
 
 " gotags-tagbarの設定
-nmap <F8> :TagbarToggle<CR>
+" SEE: https://github.com/jstemmer/gotags#vim-tagbar-configuration
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
+      \ 'ctagstype' : 'go',
+      \ 'kinds'     : [
+      \ 'p:package',
+      \ 'i:imports:1',
+      \ 'c:constants',
+      \ 'v:variables',
+      \ 't:types',
+      \ 'n:interfaces',
+      \ 'w:fields',
+      \ 'e:embedded',
+      \ 'm:methods',
+      \ 'r:constructor',
+      \ 'f:functions'
+      \ ],
+      \ 'sro' : '.',
+      \ 'kind2scope' : {
+      \ 't' : 'ctype',
+      \ 'n' : 'ntype'
+      \ },
+      \ 'scope2kind' : {
+      \ 'ctype' : 't',
+      \ 'ntype' : 'n'
+      \ },
+      \ 'ctagsbin'  : 'gotags',
+      \ 'ctagsargs' : '-sort -silent'
+      \ }
 
 " HTML5の設定
 let g:html5_event_handler_attributes_complete = 0
@@ -559,14 +384,14 @@ augroup END
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup    " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+  set backup    " keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=50    " keep 50 lines of command line history
+set ruler   " show the cursor position all the time
+set showcmd   " display incomplete commands
+set incsearch   " do incremental searching
 
 " set nobackup
 " set nowritebackup
@@ -596,36 +421,28 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   filetype plugin indent on
-
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
+    au!
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+          \ if line("'\"") > 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
   augroup END
-
 else
-
-  set autoindent		" always set autoindenting on
-
+  set autoindent    " always set autoindenting on
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -633,5 +450,5 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
